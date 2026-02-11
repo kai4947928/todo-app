@@ -47,7 +47,7 @@ def delete(todo_id):
     conn = sqlite3.connect("todo.db")
     cursor = conn.cursor()
     
-    cursor.execute("DELETE FROM todos WHERE id = ?", (todo_id))
+    cursor.execute("DELETE FROM todos WHERE id = ?", (todo_id,))
     conn.commit()
     conn.close()
     
