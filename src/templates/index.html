@@ -22,15 +22,19 @@
     <ul>
         {% for todo in todos %}
             <li>
-                <span class="{{ 'done' if todo.done else '' }}">
-                    {{ todo.text }}
+                <span class="{{ 'done' if todo[2] == 1 else '' }}">
+                    {{ todo[1] }}
                 </span>
 
-                <a href="/toggle/{{ loop.index0 }}">
-                    {% if todo.done %}未完了{% else %}完了{% endif %}
+                <a href="/toggle/{{ todo[0] }}">
+                    {% if todo[2] == 1 %}
+                        未完了
+                    {% else %}
+                        完了
+                    {% endif %}
                 </a>
 
-                <a href="/delete/{{ loop.index0 }}">削除</a>
+                <a href="/delete/{{ todo[0] }}">削除</a>
             </li>
         {% endfor %}
     </ul>
