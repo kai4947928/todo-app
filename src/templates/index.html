@@ -15,7 +15,9 @@
 
     <ul>
         {% for todo in todos %}
-            <li>{{ todo }}</li>
+            <li>{{ todo }}
+                <a href="/delete/{{ loop.index0 }}">削除</a>
+            </li>
         {% endfor %}
     </ul>
     

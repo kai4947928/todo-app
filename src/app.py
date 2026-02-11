@@ -17,5 +17,13 @@ def index():
     
     return render_template("index.html", todos=todos)
 
+@app.route("/delete/<int:todo_id>")
+def delete(todo_id):
+    
+    if 0 <= todo_id < len(todos):
+        todos.pop(todo_id)
+    
+    return redirect("/")
+
 if __name__ == "__main__":
     app.run(debug=True)
