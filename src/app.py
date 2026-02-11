@@ -1,14 +1,20 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
-@app.route("/")
+todos = []
+
+@app.route("/", methods=["GET", "POST"])
 def index():
-    todos = [
-        "買い物",
-        "課題",
-        "運動"
-    ]
+    
+    if request.method == "POST":
+        new_todo = request.form.get("todo")
+        
+        if new_todo:
+            todos.append(new_todo)
+            
+        return redirect("/")
+    
     return render_template("index.html", todos=todos)
 
 if __name__ == "__main__":
