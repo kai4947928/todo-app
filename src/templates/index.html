@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>ToDo App</title>
+    <style>
+        .done {
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
 </head>
 <body>
     <h1>ToDo一覧</h1>
@@ -15,7 +21,15 @@
 
     <ul>
         {% for todo in todos %}
-            <li>{{ todo }}
+            <li>
+                <span class="{{ 'done' if todo.done else '' }}">
+                    {{ todo.text }}
+                </span>
+
+                <a href="/toggle/{{ loop.index0 }}">
+                    {% if todo.done %}未完了{% else %}完了{% endif %}
+                </a>
+
                 <a href="/delete/{{ loop.index0 }}">削除</a>
             </li>
         {% endfor %}
